@@ -12,17 +12,17 @@ class Main:
     def mainCycle(self):
         print("Parser version", self.version)
         print("Выберите парсер")
-        print("1 - VynilFuture\n2 - decks.de\n9 - настройки\nEnter - выход")
+        print("1 - VynilFuture - My Watchlist\n2 - VynilFuture - My Wishlist\n3 - VynilFuture - My Records\n4 - decks.de\n9 - настройки\nEnter - выход")
         choice = self.choiceInputter()
-        if choice == 1:
-            vynilf = VynilFuture(self.vynilFutureData.get('login'), self.vynilFutureData.get('password'), "output/vynilFuture", "vynilFuture")
-        elif choice == 2:
-            decksde = DecksDe(self.decksdeData.get('login'), self.decksdeData.get('password'), "output/decksDe", "decksDe")
-        elif choice == 9:
-            self.doYouWantToChange()
-        else:
-            print("Выходим из программы")
-            return
+        match choice:
+            case 1: vynilf = VynilFuture(self.vynilFutureData.get('login'), self.vynilFutureData.get('password'), "output/vynilFuture", "vynilFuture",'https://www.vinylfuture.com/content.php?param=/m_myDeejay/sm_myWatchlist/perpage_160/page_')
+            case 2: vynilf = VynilFuture(self.vynilFutureData.get('login'), self.vynilFutureData.get('password'), "output/vynilFuture", "vynilFuture",'https://www.vinylfuture.com/content.php?param=/m_myDeejay/sm_myWishlist/perpage_160/page_')
+            case 3: vynilf = VynilFuture(self.vynilFutureData.get('login'), self.vynilFutureData.get('password'), "output/vynilFuture", "vynilFuture",'https://www.vinylfuture.com/content.php?param=/m_myDeejay/sm_myRecords/sort_interpretasc/perpage_160/page_')
+            case 4: decksde = DecksDe(self.decksdeData.get('login'), self.decksdeData.get('password'), "output/decksDe", "decksDe")
+            case 9: self.doYouWantToChange()
+            case _:
+                print("Выходим из программы")
+                return
         
         self.mainCycle()
 

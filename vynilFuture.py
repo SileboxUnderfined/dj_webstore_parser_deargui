@@ -5,10 +5,10 @@ import requests
 from bs4 import BeautifulSoup
 
 class VynilFuture(Parser):
-    def __init__(self, login, password, sitefolder, parsername, DOM):
+    def __init__(self, login, password, sitefolder, parsername, link_struct):
         super(VynilFuture, self).__init__(login, password, sitefolder, parsername)
-        self.DOM = DOM
-        #self.DOM = "https://www.vinylfuture.com"
+        self.DOM = "https://www.vinylfuture.com"
+        self.link_struct = link_struct
         self.data = {
             'loginFeld': login,
             'passwortFeld': password,
@@ -27,7 +27,7 @@ class VynilFuture(Parser):
         data = []
 
         while next_page:
-            link = f'https://www.vinylfuture.com/content.php?param=/m_myDeejay/sm_myWatchlist/perpage_160/page_{page}'
+            link = f'{self.link_struct}{page}'
             r = self.session.get(link)
             soup = BeautifulSoup(r.text, 'lxml')
 

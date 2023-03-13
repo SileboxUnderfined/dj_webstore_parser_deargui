@@ -16,7 +16,7 @@ class Parser:
         os.makedirs(path, exist_ok=True)
         
     def delete_bad_symb(self, s):
-        badsymbs = '( ) ‘ : , & “ ; ! ? * % # [ ] { } --- > -- ... .. /"'.split()
+        badsymbs = '( ) ‘ : , & “ ; ! ? * % # [ ] { } --- > -- ... .. /" / \''.split()
         for symb in badsymbs:
             s = s.replace(symb,'')
         return s
